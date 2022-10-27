@@ -16,7 +16,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
-    private String name;
+    private String username;
+    @Column
+    private String password;
+
     @ManyToMany
     @JoinTable(
         name = "venue_like",

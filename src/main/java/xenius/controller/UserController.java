@@ -24,9 +24,9 @@ public class UserController {
     public ResponseEntity<String> createUser (@RequestBody User user){
         String msg = "";
         if(userServiceInterface.save(user) != null){
-           msg = "User: " + user.getName() +" have been created";
+           msg = "User: " + user.getUsername() +" have been created";
         }else{
-            msg = "Error! Server could not create user: " + user.getName();
+            msg = "Error! Server could not create user: " + user.getUsername();
         }
         return new ResponseEntity<>(msg, HttpStatus.OK);
     }
