@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import xenius.model.User;
 import xenius.repository.UserRepository;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,7 +21,8 @@ public class UserService implements UserServiceInterface{
 
     @Override
     public Set<User> findAll() {
-        return null;
+        Set<User> set = new HashSet<>( userRepository.findAll());
+        return set;
     }
 
     @Override

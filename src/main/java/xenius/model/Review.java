@@ -1,12 +1,13 @@
 package xenius.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Review {
     @Id
@@ -14,11 +15,11 @@ public class Review {
     private long id;
     @ManyToOne
     @JsonBackReference // pga. cirkulær reference i @Restcontroller
-    @EqualsAndHashCode.Exclude // pga. hashCode() fra @Data
     private Event event;
     private String text;
     private int rating;
-    @OneToOne
+    @ManyToOne
+    @JsonBackReference // pga. cirkulær reference i @Restcontroller
     private User user;
 
     public void addUser(User user){

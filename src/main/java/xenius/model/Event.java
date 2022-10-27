@@ -8,7 +8,8 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Event implements Comparable<Event> {
 
@@ -19,7 +20,6 @@ public class Event implements Comparable<Event> {
     private Date date;
     @ManyToOne
     @JsonBackReference
-    @EqualsAndHashCode.Exclude
     private Band band;
     @OneToMany(mappedBy = "event")
     private Set<Review> reviews = new HashSet<>();
