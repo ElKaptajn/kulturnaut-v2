@@ -1,6 +1,7 @@
 package xenius.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,6 +11,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -29,6 +32,11 @@ public class User {
     @JsonBackReference
     private Set<Venue> venuesLiked = new HashSet<>();
 
-    @OneToMany(mappedBy = "review")
+    @OneToMany(mappedBy = "user")
     private Set<Review> reviews = new HashSet<>();
+
+    public User(String username, String password) {
+        this.username=username;
+        this.password=password;
+    }
 }

@@ -1,11 +1,11 @@
 package xenius.security;
 
+import lombok.NoArgsConstructor;
 import xenius.security.models.JwtRequestModel;
 import xenius.security.models.JwtResponseModel;
 import xenius.model.User;
-import xenius.service.IUserService;
+import xenius.service.UserServiceInterface;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,15 +17,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@NoArgsConstructor
 public class JwtController {
     private JwtUserDetailsService userDetailsService;
     private AuthenticationManager authenticationManager;
     private TokenManager tokenManager;
-    private IUserService userService;
+    private UserServiceInterface userService;
 
     @PostMapping("/signup")
     public ResponseEntity<JwtResponseModel> signup(@RequestBody JwtRequestModel request){
@@ -90,8 +90,6 @@ public class JwtController {
 
     @PutMapping("/updateUser")
     public ResponseEntity<Map> updateUser(@RequestBody User user) { // hvis man kommer hertil, er token ok
-
-        System.out.println("Hej fra update user\n\n\n\nHEJ FRA UPDATE");
 
         List<User> users = userService.findByName(user.getUsername());
         User userToUpdate = users.get(0);

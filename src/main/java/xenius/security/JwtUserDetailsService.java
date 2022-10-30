@@ -1,6 +1,6 @@
 package xenius.security;
 
-import xenius.service.IUserService;
+import xenius.service.UserServiceInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
-    private IUserService userService;
+    private UserServiceInterface userService;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println(" JwtUserDetailsService loadUserByUsername Call: 5,6");

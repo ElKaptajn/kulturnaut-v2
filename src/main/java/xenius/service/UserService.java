@@ -1,12 +1,11 @@
 package xenius.service;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import xenius.model.User;
 import xenius.repository.UserRepository;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -43,5 +42,11 @@ public class UserService implements UserServiceInterface{
     @Override
     public Optional<User> findById(Long aLong) {
         return userRepository.findById(aLong);
+    }
+
+    @Override
+    public List<User> findByName(String name) {
+        System.out.println("Userservice called findByName with argument: " + name);
+        return userRepository.findByUsername(name);
     }
 }
