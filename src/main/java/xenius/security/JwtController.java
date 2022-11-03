@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 import xenius.security.models.JwtRequestModel;
 import xenius.security.models.JwtResponseModel;
 import xenius.model.User;
+import xenius.service.UserService;
 import xenius.service.UserServiceInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,6 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@NoArgsConstructor
 public class JwtController {
     private JwtUserDetailsService userDetailsService;
     private AuthenticationManager authenticationManager;
@@ -58,6 +58,7 @@ public class JwtController {
         }
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
         final String jwtToken = tokenManager.generateJwtToken(userDetails);
+        System.out.println("Token: " + jwtToken);
         return ResponseEntity.ok(new JwtResponseModel(jwtToken));
     }
 

@@ -1,5 +1,6 @@
 package xenius.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Band {
     @Column
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "band")
     private Set<Event> events = new HashSet<>();
 }

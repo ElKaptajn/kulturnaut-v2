@@ -1,6 +1,7 @@
 package xenius.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,9 +19,12 @@ public class Event implements Comparable<Event> {
     private long id;
     private String venue;
     private Date date;
+
     @ManyToOne
     @JsonBackReference
     private Band band;
+
+    @JsonManagedReference
     @OneToMany(mappedBy = "event")
     private Set<Review> reviews = new HashSet<>();
 
