@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 import xenius.model.Band;
 import xenius.repository.BandRepository;
 
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class BandService implements BandServiceInterface{
@@ -20,7 +19,9 @@ public class BandService implements BandServiceInterface{
 
     @Override
     public Set<Band> findAll() {
-        return null;
+        //Caster listen til et set
+        Set<Band> bandSet = new HashSet<>(bandRepository.findAll());
+        return bandSet;
     }
 
     @Override

@@ -3,11 +3,14 @@ package xenius.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import xenius.model.Band;
 import xenius.service.BandServiceInterface;
+
+import java.util.Set;
 
 @RestController
 public class BandController {
@@ -28,4 +31,18 @@ public class BandController {
         }
         return new ResponseEntity<>(msg, HttpStatus.OK);
     }
+
+    @GetMapping("/getAllBands")
+    public ResponseEntity<Set<Band>> getAllBands(){
+        return new ResponseEntity<>(bandServiceInterface.findAll(), HttpStatus.OK);
+    }
 }
+
+
+
+
+
+
+
+
+
